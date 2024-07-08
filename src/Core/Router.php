@@ -25,5 +25,21 @@ class Router
         $this->routes[$pattern] = $closure;
     }
 
-
+    public function execute()
+    {
+        $requestUri = $_SERVER['REQUEST_URI'];
+        $requestUri = str_replace('/car-location', '', $requestUri);
+        
+        foreach ($this->routes as $key => $closure) {
+            if(preg_match($key, $requestUri, $matches)){
+                array_shift($matches);
+                $closure($matches);
+                return;
+            }
+        }
+        
+        require_once '../templates/error-404.php'; 
+    }
+    
+    
 }
