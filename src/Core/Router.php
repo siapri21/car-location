@@ -2,13 +2,27 @@
 
 namespace App\Core;
 
+use App\Controller\CarController;
+use App\Controller\HomeController;
+
 class Router
 {
-    private array $routes;
+    private array $routes; 
+    
+    private $currentController;
+
+
 
     public function __construct()
     {
         $this->add_route('/', function () {
+            $this->currentController = new HomeController();
+            $this->currentController->index();
+        });
+
+        $this->add_route('/reservation/{id}', function($param){
+            $this->currentController = new CarController();
+            $this->currentController->showReservationDetails($param);
         });
         $this->add_route('/contactez-nous', function () {
         });
