@@ -3,7 +3,7 @@ namespace App\Entity;
 
 class Test{
     public function display() {
-        return "hello";
+        // return "hello";
         // echo "test";
     }
    

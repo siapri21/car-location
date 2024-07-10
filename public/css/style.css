@@ -1,0 +1,67 @@
+/* Réinitialisation de base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* En-tête */
+header {
+    background-color: #556B2F; /* Vert olive foncé */
+    padding: 1rem;
+    text-align: center;
+}
+
+header a {
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+header a:hover {
+    background-color: #6B8E23; /* Vert olive plus clair */
+}
+
+/* Styles généraux */
+h1, h2, h3 {
+    color: #3D4C1E; /* Vert olive très foncé */
+    margin-bottom: 1rem;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+/* Styles pour le contenu dynamique */
+.content {
+    background-color: #E8EAD7; /* Beige olive très clair */
+    padding: 2rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Styles responsives */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+    }
+
+    header a {
+        display: block;
+        margin: 0.5rem 0;
+    }
+
+    main {
+        padding: 1rem;
+    }
+}
