@@ -21,5 +21,9 @@ class Database
         }
     }
 
+    public static function getConnexion() {
+        return self :: $connexion;
+    }
+
    
 }
