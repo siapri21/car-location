@@ -5,6 +5,7 @@ namespace App\Core;
 use App\Controller\CarController;
 use App\Controller\ConnexionController;
 use App\Controller\ContactController;
+use App\Controller\AdminController;
 use App\Controller\HomeController;
 
 class Router
@@ -45,6 +46,12 @@ class Router
          $this->add_route('/connecter', function () {
             $this->currentController = new ConnexionController();
             $this->currentController->processLogin();
+         });
+
+         // Définir une route pour la page "Contactez-nous"
+         $this->add_route('/dashboard', function () {
+            $this->currentController = new AdminController();
+            $this->currentController->index();
          });
 
         // Définir une route pour afficher les détails d'une voiture avec un paramètre ID

@@ -17,8 +17,8 @@ public function getUserByEmail($email) {
     $stmt->bindParam(':email', $email , \PDO::PARAM_STR);
     $stmt->execute();
     // on excute la requete
-    $stmt->fetch(\PDO::FETCH_ASSOC);
+     return $stmt->fetch(\PDO::FETCH_ASSOC);
     // on retourne le resultat de la requete avec fetchAll
-    return $stmt;
+
 }
 }
