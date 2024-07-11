@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Controller\Admin\AbstractAdminController;
+use App\Core\Session;
 use App\Repository\ConnecterRepository;
 
 class AdminUsersController extends AbstractAdminController
@@ -25,6 +26,22 @@ class AdminUsersController extends AbstractAdminController
     }
 
     public function processUsers(){
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            // $session = new Session();
+
+            $pseudo = $_POST['pseudo'];
+            $email = $_POST['email'];
+
+                    // Validez les données
+    }if (!empty($pseudo) && !empty($email)) {
+        // Mettre à jour les informations de l'utilisateur dans la base de données
         
+        $userRepository = new ConnecterRepository();
+        $user = $userRepository->getUserById($email, $pseudo);
+       
+    }else{
+        echo "donnee valide";
     }
+}
 }
