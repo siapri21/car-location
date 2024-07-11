@@ -38,11 +38,20 @@ public function getAllUsers() : array | bool
 public function getUserById($id) : array | bool
 {
 
-    $stmt = $this->pdo->prepare('UPDATE users SET pseudo = ?, email = ? WHERE id = ?');
+    $stmt = $this->pdo->prepare('SELECT * FROM user WHERE id = :id');
     $stmt->bindParam(':id', $id);
     // on relier la lie  :email en parammetre avec "binparam
     $stmt->execute();
      return $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
+}
+
+public function updateUser($id, $pseudo, $email) : bool
+{
+    $stmt = $this->pdo->prepare('UPDATE user SET pseudo = :pseudo, email = :email WHERE id = :id');
+    $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
+    $stmt->bindParam(':pseudo', $pseudo, \PDO::PARAM_STR);
+    $stmt->bindParam(':email', $email, \PDO::PARAM_STR);
+    return $stmt->execute();
 }
 }

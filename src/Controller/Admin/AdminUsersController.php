@@ -25,23 +25,37 @@ class AdminUsersController extends AbstractAdminController
         $this->render('user-update-form', ['user' => $user]); 
     }
 
-    public function processUsers(){
+
+    public function processUsers()
+    {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-            // $session = new Session();
-
+            
+            $session = new Session();
+    
+            $id = $_POST['id'];
             $pseudo = $_POST['pseudo'];
             $email = $_POST['email'];
+    
+            if (!empty($id) && !empty($pseudo) && !empty($email)) {
+                // Mettre à jour les informations de l'utilisateur dans la base de données
+                $userRepository = new ConnecterRepository();
+                $updated = $userRepository->updateUser($id, $pseudo, $email);
+    
+                if ($updated) {
+                    $session->setFlashMessage('votre modification a été bien prise en compte', 'success');
+                    header('Location: /users');
+                    exit();
 
-                    // Validez les données
-    }if (!empty($pseudo) && !empty($email)) {
-        // Mettre à jour les informations de l'utilisateur dans la base de données
-        
-        $userRepository = new ConnecterRepository();
-        $user = $userRepository->getUserById($email, $pseudo);
-       
-    }else{
-        echo "donnee valide";
+                } else {
+                    $session->setFlashMessage('modification echoué', 'danger');
+                    header('Location: /users');
+                    exit();
+                }
+            } else {
+                echo "Donnée invalide";
+            }
+        }
     }
-}
+    
+   
 }
