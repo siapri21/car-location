@@ -7,7 +7,7 @@
     <label for="email">Email:</label>
     <input type="email" id="email" name="email" />
     <label for="mot de passe">mot de passe:</label>
-    <input type="password" id="password" name="pwd" />
+    <input type="password" id="password" name="pswd" />
    <button type="submit">Connexion</button>
    <button>Créer un compte</button>
 

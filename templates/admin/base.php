@@ -16,6 +16,7 @@ $session = new Session();
 
     <link rel="stylesheet" href="/car-location/public/css/style.css">
     <link rel="stylesheet" href="/car-location/public/css/connexion.css">
+    <link rel="stylesheet" href="/car-location/public/css/users.css">
 </head>
 <body>
 <header>
@@ -24,6 +25,8 @@ $session = new Session();
     <a href="<?= SITE_NAME; ?>/connexion">Connexion</a>
     <a href="<?= SITE_NAME; ?>/reservation">Réservation</a>
     <a href="<?= SITE_NAME; ?>/dashboard">Dashboard</a>
+   
+   
     </header>
     <main>
       

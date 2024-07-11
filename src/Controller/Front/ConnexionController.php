@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Front;
 
-use App\Controller\AbstractController;
+use App\Controller\Front\AbstractController;
 use App\Core\Session;
 use App\Repository\ConnecterRepository;
 
@@ -27,7 +27,7 @@ class ConnexionController extends AbstractController
                 empty($_POST['pswd'])) {
                 $session->setFlashMessage('Veuillez remplir tous les champs', 'danger');
                 header('Location: ' . SITE_NAME . '/connexion');
-             
+                exit;
             }
 
             $email = trim($_POST['email']);
@@ -39,21 +39,21 @@ class ConnexionController extends AbstractController
 
             // Check if the user exists
             if ($user === false) {
-                $session->setFlashMessage('Veuillez verifier vos identifiants', 'warning');
+                $session->setFlashMessage('Veuillez verifier vos identifiants1', 'warning');
                 header('Location: ' . SITE_NAME . '/connexion');
                 exit;
             }
 
             // Verify password
             if ($user['mot_de_passe'] !== $pwd) {
-                $session->setFlashMessage('Veuillez verifier vos identifiants', 'warning');
+                $session->setFlashMessage('Veuillez verifier vos identifiants2', 'warning');
                 header('Location: ' . SITE_NAME . '/connexion');
                 exit;
             }
 
             // Verify name
-            if ($user['nom'] !== $name) {
-                $session->setFlashMessage('Veuillez verifier vos identifiants', 'warning');
+            if ($user['pseudo'] !== $name) {
+                $session->setFlashMessage('Veuillez verifier vos identifiants3', 'warning');
                 header('Location: ' . SITE_NAME . '/connexion');
                 exit;
             }

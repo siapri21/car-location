@@ -2,11 +2,12 @@
 
 namespace App\Core;
 
-use App\Controller\CarController;
-use App\Controller\ConnexionController;
-use App\Controller\ContactController;
-use App\Controller\AdminController;
-use App\Controller\HomeController;
+use App\Controller\Front\CarController;
+use App\Controller\Front\HomeController;
+use App\Controller\Front\ConnexionController;
+use App\Controller\Front\ContactController;
+use App\Controller\Admin\AdminController;
+use App\Controller\Admin\AdminUsersController;
 
 class Router
 {
@@ -47,11 +48,27 @@ class Router
             $this->currentController = new ConnexionController();
             $this->currentController->processLogin();
          });
-
          // Définir une route pour la page "Contactez-nous"
          $this->add_route('/dashboard', function () {
             $this->currentController = new AdminController();
             $this->currentController->index();
+         });
+
+           // Définir une route pour la page "Contactez-nous"
+           $this->add_route('/dashboard/users', function () {
+            $this->currentController = new AdminUsersController();
+            $this->currentController->index();
+         });
+
+          // Définir une route pour la page "Contactez-nous"
+          $this->add_route('/dashboard/users/modifier/{id}', function ($param) {
+            $this->currentController = new AdminUsersController();
+            $this->currentController->ShowUserUpdateForm($param);
+         });
+
+         $this->add_route('/connecter', function () {
+            $this->currentController = new AdminUsersController();
+            $this->currentController->processUsers();
          });
 
         // Définir une route pour afficher les détails d'une voiture avec un paramètre ID

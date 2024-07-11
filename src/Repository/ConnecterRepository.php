@@ -10,7 +10,8 @@ class ConnecterRepository extends AbstractRepository
 // creer une method getUserByemail ell eprendra eb parametre un email va retoruner un tableau 
 // requete prepare select*from user where email=xxx
 
-public function getUserByEmail($email) {
+public function getUserByEmail($email): array | bool
+ {
 
     $stmt = $this->pdo->prepare('SELECT * FROM user WHERE email = :email');
     // on relier la lie  :email en parammetre avec "binparam
@@ -19,6 +20,29 @@ public function getUserByEmail($email) {
     // on excute la requete
      return $stmt->fetch(\PDO::FETCH_ASSOC);
     // on retourne le resultat de la requete avec fetchAll
+
+}
+
+public function getAllUsers() : array | bool
+{
+
+    $stmt = $this->pdo->prepare('SELECT * FROM user ');
+    // on relier la lie  :email en parammetre avec "binparam
+    $stmt->execute();
+     return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    // on retourne le resultat de la requete avec fetchAll
+
+}
+
+
+public function getUserById($id) : array | bool
+{
+
+    $stmt = $this->pdo->prepare('UPDATE users SET pseudo = ?, email = ? WHERE id = ?');
+    $stmt->bindParam(':id', $id);
+    // on relier la lie  :email en parammetre avec "binparam
+    $stmt->execute();
+     return $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
 }
 }
