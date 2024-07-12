@@ -29,33 +29,40 @@ class AdminUsersController extends AbstractAdminController
     public function processUsers()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            
             $session = new Session();
-    
+
+            // Vérification des champs
+            if (!isset($_POST['email']) || !isset($_POST['pseudo']) || !isset($_POST['id']) ||
+                empty($_POST['email']) || empty($_POST['pseudo']) || empty($_POST['id'])) {
+
+            }
+
+            // Initialisation des variables
             $id = $_POST['id'];
             $pseudo = $_POST['pseudo'];
             $email = $_POST['email'];
-    
-            if (!empty($id) && !empty($pseudo) && !empty($email)) {
-                // Mettre à jour les informations de l'utilisateur dans la base de données
-                $userRepository = new ConnecterRepository();
-                $updated = $userRepository->updateUser($id, $pseudo, $email);
-    
-                if ($updated) {
-                    $session->setFlashMessage('votre modification a été bien prise en compte', 'success');
-                    header('Location: /users');
-                    exit();
 
-                } else {
-                    $session->setFlashMessage('modification echoué', 'danger');
-                    header('Location: /users');
-                    exit();
-                }
+            // Mise à jour des informations de l'utilisateur dans la base de données
+            $userRepository = new ConnecterRepository();
+            $user = $userRepository->updateUser($id, $pseudo, $email);
+
+            if ($user) {
+                $session->setFlashMessage('Votre modification a été bien prise en compte', 'success');
+                header('Location: /users');
+                exit();
             } else {
-                echo "Donnée invalide";
+                $session->setFlashMessage('Modification échouée', 'danger');
+                header('Location: /users');
+                exit();
             }
+        } else {
+            echo "Données invalides";
         }
-    }
+
+   
+        }
+    
     
    
-}
+
+    }

@@ -1,7 +1,8 @@
     <h1>Modifier Utilisateur</h1>
-    <form action="" method="POST">
+    <form action="/car-location/dashboard/users/modifier" method="POST">
         <label for="pseudo">Pseudo:</label>
-        <input type="text" id="pseudo" name="pseudo" ><br>
+        <input type="text" id="pseudo" name="pseudo" value="<?= $user['pseudo']; ?>">
+
 
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" ><br>

@@ -42,11 +42,11 @@ public function getUserById($id) : array | bool
     $stmt->bindParam(':id', $id);
     // on relier la lie  :email en parammetre avec "binparam
     $stmt->execute();
-     return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+     return $stmt->fetch(\PDO::FETCH_ASSOC);
 
 }
 
-public function updateUser($id, $pseudo, $email) : bool
+public function updateUser($id, $pseudo, $email) : array| bool 
 {
     $stmt = $this->pdo->prepare('UPDATE user SET pseudo = :pseudo, email = :email WHERE id = :id');
     $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
