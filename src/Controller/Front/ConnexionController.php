@@ -13,10 +13,20 @@ class ConnexionController extends AbstractController
         $this->render('connexion');
     }
 
+
+    public function Deconnection(){
+        $
+        $session->setFlashMessage('Vous êtes déconnecté', 'info');
+    
+        // Redirect to the home page or login page
+        header('Location: ' . SITE_NAME . '/');
+    }
+
     public function processLogin()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $session = new Session();
+           
 
             // Check if all required fields are set and not empty
             if (!isset($_POST['email']) || 
@@ -39,25 +49,25 @@ class ConnexionController extends AbstractController
 
             // Check if the user exists
             if ($user === false) {
-                $session->setFlashMessage('Veuillez verifier vos identifiants1', 'warning');
+                $session->setFlashMessage('Veuillez verifier vos identifiant1', 'warning');
                 header('Location: ' . SITE_NAME . '/connexion');
                 exit;
             }
 
             // Verify password
             if ($user['mot_de_passe'] !== $pwd) {
-                $session->setFlashMessage('Veuillez verifier vos identifiants2', 'warning');
+                $session->setFlashMessage('Veuillez verifier vos identifiant2', 'warning');
                 header('Location: ' . SITE_NAME . '/connexion');
                 exit;
             }
 
             // Verify name
             if ($user['pseudo'] !== $name) {
-                $session->setFlashMessage('Veuillez verifier vos identifiants3', 'warning');
+                $session->setFlashMessage('Veuillez verifier vos identifiant3', 'warning');
                 header('Location: ' . SITE_NAME . '/connexion');
                 exit;
             }
-
+            $session->createSession($user);
             // Success, user is logged in
             $session->setFlashMessage('Vous êtes connecté', 'primary');
             header('Location: ' . SITE_NAME . '/');

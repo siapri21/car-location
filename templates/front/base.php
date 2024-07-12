@@ -21,12 +21,29 @@ $session = new Session();
 <header>
     <a href="<?= SITE_NAME; ?>/">Accueil</a>
     <a href="<?= SITE_NAME; ?>/contact">Contact</a>
+
+  <?php
+    if (isset($_SESSION['LOGGED_ID']) && $_SESSION['LOGGED_ADMIN']){ 
+  ?>
+    <a href="<?= SITE_NAME; ?>/deconnexion">deconnexion</a>   
+  <?php
+    } else {
+    ?>
     <a href="<?= SITE_NAME; ?>/connexion">Connexion</a>
-    <a href="<?= SITE_NAME; ?>/reservation">Réservation</a>
-    <a href="<?= SITE_NAME; ?>/dashboard">Dashboard</a>
-   
-   
+    <?php
+    }
+    ?>
+
+    <?php
+    if (isset($_SESSION['LOGGED_ADMIN']) && $_SESSION['LOGGED_ADMIN']) {
+        ?>
+        <a href="<?= SITE_NAME; ?>/dashboard">Dashboard</a>
+    <?php
+    }
+    ?>
+
     </header>
+
     <main>
       
     </main>

@@ -48,6 +48,11 @@ class Router
             $this->currentController = new ConnexionController();
             $this->currentController->processLogin();
          });
+
+         $this->add_route('/deconnecter', function () {
+            $this->currentController = new ConnexionController();
+            $this->currentController->deconnection();
+         });
          // Définir une route pour la page "Contactez-nous"
          $this->add_route('/dashboard', function () {
             $this->currentController = new AdminController();
@@ -56,6 +61,12 @@ class Router
 
            // Définir une route pour la page "Contactez-nous"
            $this->add_route('/dashboard/users', function () {
+            $this->currentController = new AdminUsersController();
+            $this->currentController->showUsers();
+         });
+
+         // Définir une route pour la page "Contactez-nous"
+         $this->add_route('/dashboard/cars', function () {
             $this->currentController = new AdminUsersController();
             $this->currentController->index();
          });
@@ -66,7 +77,7 @@ class Router
             $this->currentController->ShowUserUpdateForm($param);
          });
 
-         $this->add_route('/connecter', function () {
+         $this->add_route('/modifier-user', function () {
             $this->currentController = new AdminUsersController();
             $this->currentController->processUsers();
          });

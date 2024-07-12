@@ -11,12 +11,21 @@ class AdminUsersController extends AbstractAdminController
     public function index()
     {
         $userRepository = new ConnecterRepository();
+        $cars = $userRepository->getAllCar();
+    
+        $this->render('dashboard-cars', ['vehicules' => $cars]);
+    }
+
+    public function showUsers()
+    {
+        $userRepository = new ConnecterRepository();
         $users = $userRepository->getAllUsers();
 
         $this->render('dashboard-users', ['users' => $users]);
     }
 
 
+   
     public function ShowUserUpdateForm ($param){
         
         $userRepository = new ConnecterRepository();

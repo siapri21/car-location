@@ -34,6 +34,17 @@ public function getAllUsers() : array | bool
 
 }
 
+public function getAllCar() : array | bool
+{
+
+    $stmt = $this->pdo->prepare('SELECT * FROM user ');
+    // on relier la lie  :email en parammetre avec "binparam
+    $stmt->execute();
+     return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    // on retourne le resultat de la requete avec fetchAll
+
+}
+
 
 public function getUserById($id) : array | bool
 {
