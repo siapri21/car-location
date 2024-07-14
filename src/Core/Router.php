@@ -38,6 +38,12 @@ class Router
            $this->currentController->showContactForm();
         });
 
+
+        $this->add_route('/deconnexion', function () {
+            $this->currentController = new ConnexionController();
+            $this->currentController->deconnexion();
+         });
+
           // Définir une route pour la page "Contactez-nous"
           $this->add_route('/connexion', function () {
             $this->currentController = new ConnexionController();
@@ -49,10 +55,7 @@ class Router
             $this->currentController->processLogin();
          });
 
-         $this->add_route('/deconnecter', function () {
-            $this->currentController = new ConnexionController();
-            $this->currentController->deconnection();
-         });
+
          // Définir une route pour la page "Contactez-nous"
          $this->add_route('/dashboard', function () {
             $this->currentController = new AdminController();
@@ -70,6 +73,16 @@ class Router
             $this->currentController = new AdminUsersController();
             $this->currentController->index();
          });
+
+         $this->add_route('/dashboard/cars/ajouter', function () {
+            $this->currentController = new AdminUsersController();
+            $this->currentController->showCarCreateForm();
+        });
+
+        $this->add_route('/dashboard/cars/create-car', function () {
+            $this->currentController = new AdminUsersController();
+            $this->currentController->processCarCreateForm();
+        });
 
           // Définir une route pour la page "Contactez-nous"
           $this->add_route('/dashboard/users/modifier/{id}', function ($param) {

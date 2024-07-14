@@ -37,7 +37,7 @@ public function getAllUsers() : array | bool
 public function getAllCar() : array | bool
 {
 
-    $stmt = $this->pdo->prepare('SELECT * FROM user ');
+    $stmt = $this->pdo->prepare('SELECT * FROM vehicules');
     // on relier la lie  :email en parammetre avec "binparam
     $stmt->execute();
      return $stmt->fetchAll(\PDO::FETCH_ASSOC);

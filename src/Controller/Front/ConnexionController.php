@@ -14,13 +14,15 @@ class ConnexionController extends AbstractController
     }
 
 
-    public function Deconnection(){
-        $
-        $session->setFlashMessage('Vous êtes déconnecté', 'info');
+    public function deconnexion(){
+            session_start();
+            session_unset();
+            session_destroy();
     
-        // Redirect to the home page or login page
-        header('Location: ' . SITE_NAME . '/');
+            header('Location: ' . SITE_NAME . '/');
+            exit;
     }
+
 
     public function processLogin()
     {

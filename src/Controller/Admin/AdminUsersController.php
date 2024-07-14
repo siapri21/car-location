@@ -16,6 +16,23 @@ class AdminUsersController extends AbstractAdminController
         $this->render('dashboard-cars', ['vehicules' => $cars]);
     }
 
+    public function showCarCreateForm()
+    {
+        $this->render('car-create-form');
+    }
+
+    public function processCarCreateForm()
+    {
+        $session = new Session();
+
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            
+        } else {
+            header('Location: /car-location/dashboard');
+            exit;
+        }
+    }
+
     public function showUsers()
     {
         $userRepository = new ConnecterRepository();
